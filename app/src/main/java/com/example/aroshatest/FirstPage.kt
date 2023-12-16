@@ -81,9 +81,11 @@ fun FirstPage(navController: NavController, sharedViewModel: SharedViewModel) {
         mutableStateOf("")
     }
     var date = rememberSaveable { mutableStateOf("") }
-  //  val context = LocalContext.current
 
-
+    //form validation function
+    fun isFormValid(firstName: String, lastName: String, id: String, date: String): Boolean {
+        return firstName.isNotBlank() && lastName.isNotBlank() && id.length == 10 && date.isNotBlank()
+    }
 
 
     Column(
@@ -93,24 +95,25 @@ fun FirstPage(navController: NavController, sharedViewModel: SharedViewModel) {
             .background(Color.White)
             .padding(20.dp)
     ) {
+        //top image
         Image(
             painter = painterResource(id = R.drawable.pic4),
             contentDescription = null,
-            modifier = Modifier.padding(0.dp,0.dp,0.dp,40.dp)// Provide a content description if needed
+            modifier = Modifier.padding(0.dp,0.dp,0.dp,40.dp)
         )
+        //text inputs
         TextField(
             value = nameR,
             placeholder = {
                 Text("مثال : نسترن")
             },
             onValueChange = {
-                // This block is executed whenever the value changes
                 nameR = it
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-            label = { Text("نام : ") }, // Optional: You can add a label for the text field
+            label = { Text("نام : ") },
         )
 
         TextField(
@@ -119,13 +122,13 @@ fun FirstPage(navController: NavController, sharedViewModel: SharedViewModel) {
                 Text("مثال : ابراهیمی")
             },
             onValueChange = {
-                // This block is executed whenever the value changes
                 familyR = it
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-            label = { Text("نام خانوادگی : ") }, // Optional: You can add a label for the text field
+            label = { Text("نام خانوادگی : ") },
+
         )
         TextField(
             value = idR,
@@ -133,7 +136,6 @@ fun FirstPage(navController: NavController, sharedViewModel: SharedViewModel) {
                 Text("مثال : 0123456789")
             },
             onValueChange = {
-                // This block is executed whenever the value changes
                     newId ->
                 if (newId.length <= 10) {
                     idR = newId
@@ -146,16 +148,9 @@ fun FirstPage(navController: NavController, sharedViewModel: SharedViewModel) {
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             visualTransformation = VisualTransformation.None,
         )
+        //date input
         datepicker(context = LocalContext.current, date = date)
-
-
-        fun isFormValid(firstName: String, lastName: String, id: String, date: String): Boolean {
-            // Add your validation logic here
-            return firstName.isNotBlank() && lastName.isNotBlank() && id.length == 10 && date.isNotBlank()
-        }
-
-
-
+        //sign in btn
         Button(onClick = {
             sharedViewModel.firstName = nameR
             sharedViewModel.lastName = familyR
@@ -170,10 +165,6 @@ fun FirstPage(navController: NavController, sharedViewModel: SharedViewModel) {
         )
         {
             Text(text = "ثبت نام")
-            // Your button content
         }
-
-
-
     }
 }

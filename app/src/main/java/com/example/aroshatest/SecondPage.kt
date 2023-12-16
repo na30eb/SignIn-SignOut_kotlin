@@ -46,7 +46,7 @@ fun SecondPage(navController: NavController, sharedViewModel: SharedViewModel) {
         userInfo = UserPreferences.getUser(context)
         onDispose { }
     }
-    // Sample data for the table
+    // data table
     val tableData = listOf(
         listOf("نام", "نام خانوادگی", "کدملی","تاریخ تولد"),
         listOf(userInfo?.firstName.orEmpty(), userInfo?.lastName.orEmpty(), userInfo?.id.orEmpty(), userInfo?.birthdate.orEmpty())
@@ -132,21 +132,4 @@ fun SecondPage(navController: NavController, sharedViewModel: SharedViewModel) {
 
     }//end of table
 
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-
-        // Navigate back to the first page if needed
-
-    }//end of col
 }//end of second pagde
-@Preview
-@Composable
-fun SecondPagePreview() {
-    val navController = rememberNavController()
-    val sharedViewModel = SharedViewModel()
-
-    SecondPage(navController = navController, sharedViewModel = sharedViewModel)
-}

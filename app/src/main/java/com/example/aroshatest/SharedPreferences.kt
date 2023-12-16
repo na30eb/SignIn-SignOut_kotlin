@@ -2,6 +2,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.aroshatest.UserInfo
 
+//data managment page
 object UserPreferences {
     private const val PREF_NAME = "UserPrefs"
     private const val KEY_FIRST_NAME = "firstName"
@@ -9,6 +10,7 @@ object UserPreferences {
     private const val KEY_ID = "id"
     private const val KEY_BIRTHDATE = "birthdate"
 
+    //saving dtata function
     fun saveUser(context: Context, userInfo: UserInfo) {
         val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -20,7 +22,7 @@ object UserPreferences {
 
         editor.apply()
     }
-
+    //getting saved data function
     fun getUser(context: Context): UserInfo? {
         val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
@@ -35,6 +37,7 @@ object UserPreferences {
             null
         }
     }
+    //deleting dtata function
     fun clearUser(context: Context) {
         val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = prefs.edit()
