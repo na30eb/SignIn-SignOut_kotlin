@@ -35,4 +35,13 @@ object UserPreferences {
             null
         }
     }
-}
+    fun clearUser(context: Context) {
+        val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = prefs.edit()
+
+        // Clear all values in SharedPreferences
+        editor.clear()
+
+        editor.apply()
+    }
+}//end of user prefrence

@@ -7,6 +7,7 @@ android {
     namespace = "com.example.aroshatest"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.example.aroshatest"
         minSdk = 24
